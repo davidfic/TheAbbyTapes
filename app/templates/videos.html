@@ -1,0 +1,36 @@
+{% extends "nav.html" %}
+
+{% block content %}
+
+
+
+<div class="container">
+{% for video in videos %}
+	<div class="row">       
+		<div class="col-lg-7 ">
+			<p>{{video['youtubelink']}}</p>
+			<iframe width="650" height="315" src="http://youtu.be/H7K-8bOJFJ0" frameborder="0" allowfullscreen></iframe>
+		</div>
+	</div>		
+
+
+<div class="row">       
+          <div class="col-lg-7">
+      <iframe width="650" height="315" src="{{video['youtubelink']}}" frameborder="0" allowfullscreen></iframe>
+        </div>
+{% endfor %}
+
+
+
+        </div>
+
+
+
+
+
+{% endblock %}
+
+
+
+
+<!-- {{video['youtubelink']}}-->
