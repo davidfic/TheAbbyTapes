@@ -8,7 +8,6 @@ players = conn.players
 
 
 def get_first_row():
-
 	return players.find({"_id": { "$gt": 0, "$lt": 4} } )
 	
 	
