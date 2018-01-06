@@ -10,6 +10,23 @@
     </div> <!-- div jumbotron -->
     <h1 class="page-header text-center">The Players</h1>
     <div class="row">
+
+
+      {% for player in players %}
+      <div class="col-lg-4">
+
+          <a href="/player-{{player}}"><img class="img-circle"                   
+                  src="http://s3.amazonaws.com/fico_pics/{{player}}-head.jpg" 
+                  data-src="http://s3.amazonaws.com/fico_pics/{{player}}-head.jpg" 
+                  alt="{{player}} head shot"></a>
+
+          <h2>{{player|capitalize}}</h2>
+          <!-- <p>{{p["desc"]}}</p> -->
+          <p><a class="btn btn-default" 
+                  href="/player-{{p["name"]}}">Player page&raquo;</a></p>
+
+        </div>
+      {% endfor %}
       {% for p in row1 %}
 
         <div class="col-lg-4">

@@ -27,7 +27,7 @@ def add_player(client, name, description):
 
 def mark_done(client, player_id):
     with client.transaction():
-        key = client.key('Player', player_id)
+        key = client.key('player', player_id)
         player = client.get(key)
 
         if not player:
@@ -48,6 +48,6 @@ def list_players(client):
     query = client.query(kind='player')
     query.order = ['created']
 
-    return list(query.fetch())
+    return list(query.fetch(limit=1))
 
 
