@@ -1,22 +1,53 @@
-from app import connection
+# Imports the Google Cloud client library
+from google.cloud import datastore
+import datetime
+ 
 
 
+def create_client(project_id):
+    return datastore.Client(project_id)
 
-conn = connection.theabbytapes
-players = conn.players
+def add_player(client, name, description):
+    key = client.key('player')
+
+    player = datastore.Entity(
+        key, exclude_from_indexes=['description'])
+
+    player.update({
+        'created': datetime.datetime.utcnow(),
+        'description': description,
+        'done': False,
+        'name': name
+    })
+
+    client.put(player)
+
+    return player.key
 
 
+def mark_done(client, player_id):
+    with client.transaction():
+        key = client.key('Player', player_id)
+        player = client.get(key)
 
-def get_first_row():
-	return players.find({"_id": { "$gt": 0, "$lt": 4} } )
-	
-	
+        if not player:
+            raise ValueError(
+                'Task {} does not exist.'.format(player_id))
 
-def get_second_row():
-	return players.find({"_id": { "$gt": 3, "$lt": 7} } )
+        player['done'] = True
 
-def get_places():
-	return players.find({"_id": { "$gt": 6, "$lt": 11 } } )
+        client.put(player)
 
-def get_downloads():
-	return players.find({"_id": {"$gte": 11, "$lte": 15}})
+
+def delete_player(client, player_id):
+    key = client.key('Player', player_id)
+    client.delete(key)
+
+
+def list_players(client):
+    query = client.query(kind='player')
+    query.order = ['created']
+
+    return list(query.fetch())
+
+

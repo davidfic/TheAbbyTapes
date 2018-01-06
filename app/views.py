@@ -2,16 +2,22 @@ from flask import flash, redirect,render_template, send_file, request,session,g,
 from functools import wraps
 from app import app
 import db as db
-from flask.ext.login import login_user, logout_user, current_user, login_required
+from flask_login import login_user, logout_user, current_user, login_required
 
 videos = ['UCHO47KZgvg','0Un96jc_7sM','Ef6uFle-QqY','i6SUIajY-3I','YPr2UZfS4Vg','caDcaexxxmo','vhwo-U8PfpE']
 
+players = db.list_players()
+player_list = []
+# for player in players:
+#     player_list.append(player)
+
+[player_list.append(player) for player in players]
 
 @login_required
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html", row1=db.get_first_row(), row2=db.get_second_row(), places=db.get_places())
+    return render_template("index.html", players=player_listrow1=db.get_first_row(), row2=db.get_second_row(), places=db.get_places())
 
 @login_required
 @app.route('/download')
