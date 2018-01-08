@@ -13,57 +13,27 @@
 
 
       {% for player in players %}
+      
+       {% set player_dict = dict(player) %}
+       {% set player_name = player_dict['name'].decode('UTF-8') %}
+       {% set player_desc = player_dict['description'].decode('UTF-8') %}
+
       <div class="col-lg-4">
 
-          <a href="/player-{{player}}"><img class="img-circle"                   
-                  src="http://s3.amazonaws.com/fico_pics/{{player}}-head.jpg" 
-                  data-src="http://s3.amazonaws.com/fico_pics/{{player}}-head.jpg" 
-                  alt="{{player}} head shot"></a>
+          <a href="/player-{{player_name}}"><img class="img-circle"                   
+                  src="http://s3.amazonaws.com/fico_pics/{{player_name}}-head.jpg" 
+                  data-src="http://s3.amazonaws.com/fico_pics/{{player_name}}-head.jpg" 
+                  alt="{{player_name}} head shot"></a>
 
-          <h2>{{player|capitalize}}</h2>
-          <!-- <p>{{p["desc"]}}</p> -->
+          <p>{{player_desc}}</p>
           <p><a class="btn btn-default" 
-                  href="/player-{{p["name"]}}">Player page&raquo;</a></p>
+                  href="/player-{{player_name}}">Player page&raquo;</a></p>
 
         </div>
       {% endfor %}
-      {% for p in row1 %}
-
-        <div class="col-lg-4">
-
-          <a href="/player-{{p["name"]}}"><img class="img-circle"                   
-                  src="http://s3.amazonaws.com/fico_pics/{{p["name"]}}-head.jpg" 
-                  data-src="http://s3.amazonaws.com/fico_pics/{{p["name"]}}-head.jpg" 
-                  alt="Generic placeholder image"></a>
-
-          <h2>{{p["name"]|capitalize}}</h2>
-          <p>{{p["desc"]}}</p>
-          <p><a class="btn btn-default" 
-                  href="/player-{{p["name"]}}">Player page&raquo;</a></p>
-
-        </div>
-      
-      {% endfor %}
+     
     </div>
 
-    <div class="row">
-      {% for p in row2 %}
-        <div class="col-lg-4">
-         
-          <a href="/player-{{p["name"]}}"><img  class="img-circle" 
-                  src="http://s3.amazonaws.com/fico_pics/{{p["name"]}}-head.jpg" 
-                  data-src="http://s3.amazonaws.com/fico_pics/{{p["name"]}}-head.jpg" 
-                  alt="Generic placeholder image"></a>
-
-          <h2>{{p["name"]|capitalize}}</h2>
-          <p>{{p["desc"]}}</p>
-          <p><a class="btn btn-default" href="/player-{{p["name"]}}">Player page&raquo;</a></p>
-
-        </div>
-      
-      {% endfor %}
-
-    </div>
     
 
       {% for place in places %}
