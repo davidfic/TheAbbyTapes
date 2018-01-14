@@ -6,8 +6,9 @@ from . import db as db
 
 videos = ['UCHO47KZgvg','0Un96jc_7sM','Ef6uFle-QqY','i6SUIajY-3I','YPr2UZfS4Vg','caDcaexxxmo','vhwo-U8PfpE']
 
-client = db.create_client('kubernetes-testing-186304')
+client = db.create_client()
 
+#'kubernetes-testing-186304'
 players = db.list_players(client)
 
 

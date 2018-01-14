@@ -4,8 +4,8 @@ import datetime
  
 
 
-def create_client(project_id):
-    return datastore.Client(project_id)
+def create_client():
+    return datastore.Client()
 
 def add_player(client, name, description):
     key = client.key('player')

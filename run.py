@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-#dummy comment
 from app import app
 SECRET_KEY = 'SuperSecretString'
 if __name__ == "__main__":
