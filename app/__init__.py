@@ -1,7 +1,5 @@
 from flask import Flask
 from flask import session
-from flask_debugtoolbar import DebugToolbarExtension
-# from pymongo import MongoClient
 
 
 app = Flask(__name__)

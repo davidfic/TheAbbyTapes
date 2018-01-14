@@ -2,7 +2,7 @@ from flask import flash, redirect,render_template, send_file, request,session,g,
 from functools import wraps
 from app import app
 import db as db
-from flask_login import login_user, logout_user, current_user, login_required
+#from flask_login import login_user, logout_user, current_user, login_required
 
 videos = ['UCHO47KZgvg','0Un96jc_7sM','Ef6uFle-QqY','i6SUIajY-3I','YPr2UZfS4Vg','caDcaexxxmo','vhwo-U8PfpE']
 
