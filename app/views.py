@@ -2,31 +2,35 @@ from flask import flash, redirect,render_template, send_file, request,session,g,
 from functools import wraps
 from app import app
 import db as db
-#from flask_login import login_user, logout_user, current_user, login_required
+from . import db as db
 
 videos = ['UCHO47KZgvg','0Un96jc_7sM','Ef6uFle-QqY','i6SUIajY-3I','YPr2UZfS4Vg','caDcaexxxmo','vhwo-U8PfpE']
 
-client = db.create_client('abbytapes')
+client = db.create_client('kubernetes-testing-186304')
 
 players = db.list_players(client)
-print("hello")
+
 
 player_list = []
-# for player in players:
-#     player_list.append(player)
+player_dict = {}
 
-[player_list.append(player) for player in players]
+# [player_list.append(player) for player in players]
+
+# for player in players:
+#     players_dict = dict(player)
+
+
 
 # @login_required
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html", players=player_list, places=db.get_places())
+    return render_template("index.html", players=players, player_dict=player_dict)#, places=db.get_places())
 
 # @login_required
 @app.route('/download')
 def get_full_video():
-   return render_template("download.html", data=db.get_downloads())
+   return render_template("download.html")#, data=db.get_downloads())
 
 # @login_required  
 @app.route('/player-<name>')

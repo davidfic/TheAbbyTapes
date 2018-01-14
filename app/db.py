@@ -48,6 +48,6 @@ def list_players(client):
     query = client.query(kind='player')
     query.order = ['created']
 
-    return list(query.fetch(limit=1))
+    return list(query.fetch())
 
 
